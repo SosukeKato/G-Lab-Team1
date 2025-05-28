@@ -212,6 +212,12 @@ public class GameMaster : MonoBehaviour
 
     IEnumerator EnemyAttack()
     {
+
+        ruleBook.ProcessEnemyPoison(enemy);
+        enemy.EnemyLifeContlloer.lifeReflection(enemy);
+        gameUI.KekkaPanel.SetActive(true);
+        yield return new WaitForSeconds(2f);
+
         //敵の攻撃宣言
         ruleBook.TextSetupNext();
         gameUI.KekkaPanel.SetActive(true);

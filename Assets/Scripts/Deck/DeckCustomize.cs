@@ -39,6 +39,7 @@ public class DeckCustomize : MonoBehaviour
             deck.LookDeck.Add(newCard);
 
             deck.deckArignment();
+            Debug.Log(card.Base.Number);
         }
         else if (deck.DeckAll.Count == 15 )
         {

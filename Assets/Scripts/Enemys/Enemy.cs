@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Data;
 using System.Threading;
 using UnityEngine;
 using UnityEngine.Events;
@@ -10,6 +11,9 @@ public class Enemy : MonoBehaviour
     [SerializeField] Image icon;
     [SerializeField] Text descriotionText;
     [SerializeField] Text CountText;
+
+    
+
     public EnemyBase Base { get; private set; }
     public EnemyBase Status { get; private set; }
     public Text DescriotionText { get => descriotionText; set => descriotionText = value; }
@@ -17,6 +21,14 @@ public class Enemy : MonoBehaviour
 
     private EnemyLifeContlloer enemyLifeContlloer;
     public EnemyLifeContlloer EnemyLifeContlloer { get => enemyLifeContlloer; set => enemyLifeContlloer = value; }
+
+    public int poisonDuration = 0;
+    public int poisonDamagePerTurn = 0;
+    public int PoisonDuration
+    {
+        get => poisonDuration;
+        set => poisonDuration = Mathf.Max(0, value);
+    }
 
     public UnityAction<Card> OnClickCard;
 
@@ -32,6 +44,8 @@ public class Enemy : MonoBehaviour
         descriotionText.text = enemyBase.Description;
         CountText1.text = $"{enemyBase.Count1}";
         EnemyLifeContlloer = GetComponent<EnemyLifeContlloer>();
+
+        PoisonDuration = 0;
     }
 
 

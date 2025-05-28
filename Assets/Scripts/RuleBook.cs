@@ -25,6 +25,7 @@ public class RuleBook : MonoBehaviour
             player.MagicAttack = (int)(player.MagicAttack * flontCard.Base.CardEffect.Magic_Effect);
             player.Guard = (int)(player.Guard * flontCard.Base.CardEffect.Protection_Effect);
             player.Heal = (int)(player.Heal * flontCard.Base.CardEffect.Heal_Effect);
+            player.Poison = (int)(player.Poison * flontCard.Base.CardEffect.Poison_Effect);
         }
     }
 
@@ -40,6 +41,7 @@ public class RuleBook : MonoBehaviour
             player.MagicAttack = (int)(player.MagicAttack * pluseffect);
             player.Guard = (int)(player.Guard * pluseffect);
             player.Heal = (int)(player.Heal * pluseffect);
+            player.Poison = (int)(player.Poison * pluseffect);
         }
     }
 
@@ -93,7 +95,32 @@ public class RuleBook : MonoBehaviour
             player.Life += player.Heal;
             kekka.text = $"{player.Heal}HPかいふくした";
         }
+        else if (card.Base.Type == CardType.Poison)
+        {
+            enemy.poisonDuration = 3;
+            enemy.poisonDamagePerTurn = (int)(enemy.Base.EnemyLifeMax * 0.05f);
+            kekka.text = $"{enemy.Base.Name1} is now poisoned";
+            Debug.Log("Poisoned!");
+        }
 
+    }
+
+    public void ProcessEnemyPoison(Enemy enemy)
+    {
+        if (enemy.poisonDuration > 0)
+        {
+            enemy.Base.EnemyLife -= enemy.poisonDamagePerTurn;
+            enemy.poisonDuration--;
+
+            kekka.text = $"{enemy.poisonDamagePerTurn}ポイソーンダメージ与えた。{enemy.poisonDuration}ターンが残ってる。";
+            Debug.Log($"{enemy.poisonDuration} left");
+
+            if (enemy.Base.EnemyLife <= 0)
+            {
+                enemy.Base.EnemyLife = 0;
+                kekka.text = $"{enemy.Base.Name1}はポイソーンで死んだ！";
+            }
+        }
     }
 
     //エネミーの強力攻撃までのカウントダウン

@@ -32,6 +32,7 @@ public enum CardType
     Witchcraft,
     Protection,
     Heal,
+    Poison,
     Reset,
 }
 
@@ -51,9 +52,11 @@ public class CardEffect
     [SerializeField] float magic_Effect;
     [SerializeField] float protection_Effect;
     [SerializeField] float heal_Effect;
+    [SerializeField] float poison_Effect;
 
     public float Attack_Effect { get => attack_Effect; set => attack_Effect = value; }
     public float Magic_Effect { get => magic_Effect; set => magic_Effect = value; }
     public float Protection_Effect { get => protection_Effect; set => protection_Effect = value; }
     public float Heal_Effect { get => heal_Effect; set => heal_Effect = value; }
+    public float Poison_Effect { get => poison_Effect; set => poison_Effect = value; }
 }

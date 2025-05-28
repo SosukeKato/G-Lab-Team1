@@ -15,6 +15,7 @@ public class Battler : MonoBehaviour
     [SerializeField] int MagicAttackBase;
     [SerializeField] int HealBase;
     [SerializeField] int guardBase;
+    [SerializeField] int poisonBase;
     [Space(10)]
     [Header("実数値")]
     [SerializeField] int life;
@@ -23,13 +24,15 @@ public class Battler : MonoBehaviour
     [SerializeField] int defens;
     [SerializeField] int heal;
     [SerializeField] int guard;
+    [SerializeField] int poison;
 
     public UnityAction OnSubmitAction;
     public UnityAction OnSynthesisAction;
     public bool IsSubmitted { get; private set; }
     public int LifeMax { get => lifeMax; set => lifeMax = value; }
     public int Heal { get => heal; set => heal = value; }
-    public int Guard { get => guard; set => guard = value; }
+    public int Guard { get => guard; set => guard = value; }  
+    public int Poison { get => poison; set => poison = value; }
 
     public int Attack { get => attack; set => attack = value; }
     public int MagicAttack { get => magicAttack; set => magicAttack = value; }
@@ -54,6 +57,7 @@ public class Battler : MonoBehaviour
         MagicAttack = MagicAttackBase;
         Heal = HealBase;
         Guard = guardBase;
+        Poison = poisonBase;
     }
     //生成されたカードをリストに追加・カードクリック時の効果追加
     public void SerCardToHand(Card card)
